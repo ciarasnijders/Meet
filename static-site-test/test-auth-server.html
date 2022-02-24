@@ -59,6 +59,7 @@
           .then(function (json) {
             const result = JSON.stringify(json);
             // we get the value of authUrl
+            const {authURL} = json;
             // then add it to the html
             resultElement.innerText = result;
             resultLink.href = authURL;
