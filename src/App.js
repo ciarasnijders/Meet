@@ -32,14 +32,11 @@ class App extends Component {
   }
 
   updateEvents = (locations) => {
-    console.log(locations, "location")
-
     getEvents().then((events) => {
-      console.log(events);
       const locationEvents = (locations === 'all') 
       ? events  
       : events.filter((event) => locations.includes(event.location));
-      console.log(locationEvents, "locationsEvents")
+      // console.log('location events ---->', locationEventslength)
       this.setState({ 
         events: locationEvents.slice(0, this.state.NumberOfEvents), 
         locations: locations, 
@@ -49,6 +46,7 @@ class App extends Component {
   };
 
   updateNumberOfEvents = (NumberOfEvents) => {
+    // console.log('app from tests --->', NumberOfEvents)
     this.setState(
       {
         NumberOfEvents

@@ -7,6 +7,7 @@ class NumberOfEvents extends Component {
 
   handleInputChange = (event) => {
     const value = event.target.value;
+    console.log('from tests ------>', value)
     this.setState({
       numberOfEvents: value,
     });

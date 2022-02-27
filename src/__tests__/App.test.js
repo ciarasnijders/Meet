@@ -72,9 +72,9 @@ describe('<App /> integration', () => {
 
   test('update number of events after user changes number of events', async() => {
     const AppWrapper = mount(<App />);
-    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const NumberOfEventsWrapper = await AppWrapper.find(NumberOfEvents).instance();
     const eventCount = 2;
-    await NumberOfEventsWrapper.instance().handleInputChange({
+    await NumberOfEventsWrapper.handleInputChange({
         target: {value: eventCount},
     });
     const allEvents = await getEvents();
