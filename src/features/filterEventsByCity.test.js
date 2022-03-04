@@ -1,6 +1,5 @@
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
-import { mount } from 'enzyme';
 import App from '../App';
 import { mockData } from '../mock-data';
 import { mount, shallow } from 'enzyme';
@@ -54,7 +53,7 @@ defineFeature(feature, test => {
     //Scenario 3
     test('User can select a city from the suggested list', ({ given, and, when, then }) => {
         
-        let AppWrappper;
+        let AppWrapper;
 
         given('user was typing “Berlin” in the city textbox', async () => {
             AppWrapper = await mount(<App />);
