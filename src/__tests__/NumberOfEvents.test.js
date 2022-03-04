@@ -19,8 +19,8 @@ describe('<NumberOfEvents /> component', () => {
         NumberOfEventsWrapper.setState({
             numberOfEvents: '32'
         });
-        NumberOfEventsWrapper.find('.numberOfEvents').simulate('change', {target: {value: "12"}});
-        expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe("12");
+        NumberOfEventsWrapper.find('.numberOfEvents').simulate('change', {target: {value: "2"}});
+        expect(NumberOfEventsWrapper.state('numberOfEvents')).toBe("2");
     });
 
 });
