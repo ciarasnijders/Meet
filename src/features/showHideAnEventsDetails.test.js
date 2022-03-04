@@ -2,7 +2,7 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
 import { mount } from 'enzyme';
 import App from '../App';
-import { mockData } from '../mockData';
+import { mockData } from '../mock-data';
 
 const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
 
@@ -41,11 +41,11 @@ defineFeature(feature, test => {
         });
 
         when('the expand option is selected', () => {
-            AppWrapper.find(".event .details-btn").at(0).simulate('click');
+            AppWrapper.find('.event .details-btn').at(0).simulate('click');
         });
     
         then('the user will see the details of the event', () => {
-            expect(AppWrapper.find(".event .more-details")).toHaveLength(1);
+            expect(AppWrapper.find('.event .event-details')).toHaveLength(1);
         });
     });
     
@@ -56,15 +56,13 @@ defineFeature(feature, test => {
         let AppWrapper;
         AppWrapper = mount (<App />);
         
-        given('a user was viewing the events details and wanted to hide its details', () => {
-            const eventDetails = AppWrapper.find('.event .event-details');
-            expect(eventDetails.find('')).toBeDefined();
+        given('a user was viewing the events details', () => {
+            AppWrapper.update();
+            AppWrapper.find(".event .details-btn").at(0).simulate('click');
+            expect(AppWrapper.find(".event .event-details")).toHaveLength(1);
         });
 
-       
-
         when('the user clicks on button the close the expanded event', () => {
-            AppWrapper.update();
             let Event = AppWrapper.find('.event');
             Event.find('.details-btn').at(0).simulate('click');
             
@@ -72,7 +70,7 @@ defineFeature(feature, test => {
     
         then('the event will collapse to hide its details', () => {
             const EventDetails = AppWrapper.find('.event');
-            expect(EventDetails.find())
+            expect(EventDetails.find('.event .event-details')).toHaveLength(0);
         });
     });
 
