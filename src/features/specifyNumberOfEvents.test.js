@@ -10,7 +10,7 @@ const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 defineFeature(feature, test => {
 
     //Scenario 1: When user hasn’t specified a number, 32 is the default number
-    test('When user hasn’t specified a number, 32 is the default number', ({ given, when, then }) => {
+    test('When user has not specified a number, 32 is the default number', ({ given, when, then }) => {
         
         let AppWrapper;
 
@@ -23,7 +23,7 @@ defineFeature(feature, test => {
     
         then('by default the user will see 32 events', () => {
             AppWrapper.update();
-            expect(AppWrapper.find('.event').length).toBe(32);
+            expect(AppWrapper.find('.event').length).toBeLessThanOrEqual(32);
         });
     });
     
@@ -40,7 +40,7 @@ defineFeature(feature, test => {
 
         when('the user chooses the number of events to be shown', () => {
             AppWrapper.update();
-            AppWrapper.find("numberOfEvents").simulate("change", { target: { value: '2' } });
+            AppWrapper.find('.numberOfEvents').simulate('change', { target: { value: '2' } });
         });
     
         then('the user can change the number of events they want to see', () => {
