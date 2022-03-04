@@ -7,8 +7,8 @@ describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsWrapper;
 
     beforeAll(() => {
-        console.log(App.updateNumberOfEvents)
-        NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+        const emptyFunction = () => {};
+        NumberOfEventsWrapper = shallow(<NumberOfEvents updateNumberOfEvents={emptyFunction} />);
     });
 
     test('render text input', () => {
