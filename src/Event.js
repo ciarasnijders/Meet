@@ -19,16 +19,20 @@ class Event extends Component {
     return ( 
       <div className="event">
           <h2 className="summary">{event.summary}</h2>
+          
           <p className="start-date">
             {event.start.dateTime} ({event.start.timeZone})
           </p>
+
           <p className="location">
-            @{event.summary} | {event.location}
+            {/* @{event.summary} |  */}
+            {event.location}
           </p>
           
           {!collapsed && 
-            <div className="more-details">
+            <div className="event-details">
               <h3>About event:</h3>
+              <p className='event-description'>{event.description}</p>
               <a 
                 className='details-link'
                 href={event.htmlLink} 
@@ -37,7 +41,6 @@ class Event extends Component {
               >
                 See details on Google Calendar
               </a>
-              <p className="event-description">{event.description}</p>
             </div>
           }
 
