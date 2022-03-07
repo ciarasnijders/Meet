@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 import reportWebVitals from './reportWebVitals';
+
+import * as atatus from 'atatus-spa';
+atatus.config('1b7f5ada3e8f45f5ac7e092580eb6d48').install();
+
 
 ReactDOM.render(
   <React.StrictMode>
