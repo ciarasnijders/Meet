@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
   state = {
     query: '',
     suggestions:[],
-    showSuggestions: undefined
+    showSuggestions: undefined,
+    infoText:''
   }
 
   handleInputChanged = (event) => {
@@ -17,12 +19,14 @@ class CitySearch extends Component {
     if(suggestions.length === 0) {
       this.setState({ 
       query: value,
+      infoText: 'We can not find the city you are looking for. Please try another city',
     });
     } else {
       return this.setState({
         query: value,
         suggestions,
-        showSuggestions:false
+        showSuggestions:false,
+        infoText:''
       }); 
     }
   };
@@ -39,6 +43,7 @@ class CitySearch extends Component {
     return (
       <div className="CitySearch">
         <p>Search for City</p>
+        <InfoAlert text={this.state.infoText} />
         <input
           type="text"
           className="city"

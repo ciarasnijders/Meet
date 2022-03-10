@@ -12,7 +12,8 @@ class App extends Component {
     events: [],
     locations: [], 
     NumberOfEvents: 32,
-    currentLocation:"all"
+    currentLocation:"all",
+    errorText: ''
   }
 
   componentDidMount() {
@@ -49,7 +50,8 @@ class App extends Component {
     // console.log('app from tests --->', NumberOfEvents)
     this.setState(
       {
-        NumberOfEvents
+        NumberOfEvents,
+        errorText: 'Please select a number from 1 to 32'
       },
     );
     this.updateEvents(this.state.locations)
@@ -66,6 +68,7 @@ class App extends Component {
         />
         <NumberOfEvents 
           updateNumberOfEvents={this.updateNumberOfEvents}
+          errorText ={this.state.errorText}
         />
         <EventList 
           events={this.state.events}
