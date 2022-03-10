@@ -46,12 +46,12 @@ class App extends Component {
 
   };
 
-  updateNumberOfEvents = (NumberOfEvents) => {
+  updateNumberOfEvents = (numberOfEvents) => {
     // console.log('app from tests --->', NumberOfEvents)
     this.setState(
       {
-        NumberOfEvents,
-        errorText: 'Please select a number from 1 to 32'
+        NumberOfEvents: numberOfEvents,
+        errorText: numberOfEvents >= 32 ? 'Please select a number from 1 to 32' : ''
       },
     );
     this.updateEvents(this.state.locations)
@@ -68,6 +68,7 @@ class App extends Component {
         />
         <NumberOfEvents 
           updateNumberOfEvents={this.updateNumberOfEvents}
+          numberOfEvents={this.state.NumberOfEvents}
           errorText ={this.state.errorText}
         />
         <EventList 
