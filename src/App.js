@@ -34,14 +34,15 @@ class App extends Component {
 
   updateEvents = (locations) => {
     getEvents().then((events) => {
-      const locationEvents = (locations === 'all') 
+      const locationEvents = (locations[0] === 'all') 
       ? events  
       : events.filter((event) => locations.includes(event.location));
-      // console.log('location events ---->', locationEventslength)
-      this.setState({ 
-        events: locationEvents.slice(0, this.state.NumberOfEvents), 
-        locations: locations, 
-      })
+      if (this.mounted) {
+        this.setState({ 
+          events: locationEvents.slice(0, this.state.NumberOfEvents), 
+          locations: locations, 
+        })
+      }
     })
 
   };
@@ -69,7 +70,7 @@ class App extends Component {
         <NumberOfEvents 
           updateNumberOfEvents={this.updateNumberOfEvents}
           numberOfEvents={this.state.NumberOfEvents}
-          errorText ={this.state.errorText}
+          errorText={this.state.errorText}
         />
         <EventList 
           events={this.state.events}
