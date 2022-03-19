@@ -5,7 +5,6 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import './App.css';
 import './nprogress.css';
-import { WarningAlert } from './Alert';
 import WelcomeScreen from './WelcomeScreen';
 
 
@@ -45,9 +44,7 @@ class App extends Component {
     getEvents().then((events) => {
       const locationEvents = (location === 'all') 
       ? events  
-      : events.filter((event) => event.location === location);  
-      console.log(locationEvents, "locationEvents!!!!!!")
-      console.log(locationEvents.slice(0, this.state.NumberOfEvents), "!!!!!!!")      
+      : events.filter((event) => event.location === location);     
       this.setState({ 
         events: locationEvents.slice(0, this.state.NumberOfEvents), 
         currentLocation: location, 
@@ -90,10 +87,6 @@ class App extends Component {
           events={this.state.events}
           numberOfEvents={this.state.NumberOfEvents} 
         />
-        {
-          !navigator.onLine && <WarningAlert />
-        }
-
         <WelcomeScreen 
           showWelcomeScreen={this.state.showWelcomeScreen}
           getAccessToken={() => { getAccessToken() }} 
