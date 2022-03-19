@@ -50,5 +50,23 @@ class ErrorAlert extends Alert {
   }
 }
 
-export { InfoAlert };
-export { ErrorAlert };
+class WarningAlert extends Alert {
+  constructor(props) {
+    super(props);
+    this.color = 'green';
+  }
+
+  getStyle = () => {
+    return {
+      color: this.color,
+      position: 'relative',
+    };
+  }
+  render() {
+    return(
+      <h3>{this.props.text}</h3>
+    )
+  }
+}
+
+export { InfoAlert, ErrorAlert, WarningAlert };
