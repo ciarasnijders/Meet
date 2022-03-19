@@ -5,6 +5,7 @@ import NumberOfEvents from './NumberOfEvents';
 import { extractLocations, getEvents } from './api';
 import './App.css';
 import './nprogress.css';
+import { WarningAlert } from './Alert';
 
 
 class App extends Component {
@@ -21,7 +22,7 @@ class App extends Component {
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({ 
-          events: events.slice(0, this.state.NumberOfEvents), 
+          events,
           locations: extractLocations(events) 
         });
       }
@@ -32,34 +33,34 @@ class App extends Component {
     this.mounted = false;
   }
 
-  updateEvents = (locations) => {
+  updateEvents = (location) => {
     getEvents().then((events) => {
-      const locationEvents = (locations[0] === 'all') 
+      const locationEvents = (location === 'all') 
       ? events  
-      : events.filter((event) => locations.includes(event.location));
-      if (this.mounted) {
-        this.setState({ 
-          events: locationEvents.slice(0, this.state.NumberOfEvents), 
-          locations: locations, 
-        })
-      }
+      : events.filter((event) => event.location === location);  
+      console.log(locationEvents, "locationEvents!!!!!!")
+      console.log(locationEvents.slice(0, this.state.NumberOfEvents), "!!!!!!!")      
+      this.setState({ 
+        events: locationEvents.slice(0, this.state.NumberOfEvents), 
+        currentLocation: location, 
+      })
     })
 
   };
 
   updateNumberOfEvents = (numberOfEvents) => {
-    // console.log('app from tests --->', NumberOfEvents)
     this.setState(
       {
         NumberOfEvents: numberOfEvents,
         errorText: numberOfEvents >= 32 ? 'Please select a number from 1 to 32' : ''
       },
     );
-    this.updateEvents(this.state.locations)
+    this.updateEvents(this.state.currentLocation)
   };
 
 
   render() {
+    console.log(this.state.events, "this.state.events!!!")
     return (
       <div className="App">
         <CitySearch 
@@ -76,6 +77,9 @@ class App extends Component {
           events={this.state.events}
           numberOfEvents={this.state.NumberOfEvents} 
         />
+        {
+          !navigator.onLine && <WarningAlert />
+        }
       </div>
     );
   }
