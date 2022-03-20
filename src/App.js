@@ -11,7 +11,6 @@ import {
 } from 'recharts';
 
 
-
 class App extends Component {
   state = {
     events: [],
@@ -78,11 +77,11 @@ class App extends Component {
 
 
   render() {
-    if (this.state.showWelcomeScreen === undefined) return 
-    <div
-      className="App" 
-    />
-    const { locations, numberOfEvents } = this.state;
+    if (this.state.showWelcomeScreen === undefined) return (
+        <div
+          className="App" 
+        />
+    )
 
     return (
       <div className="App">
