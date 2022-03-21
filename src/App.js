@@ -6,9 +6,8 @@ import { extractLocations, getEvents, checkToken, getAccessToken } from './api';
 import './App.css';
 import './nprogress.css';
 import WelcomeScreen from './WelcomeScreen';
-import {
-  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip
-} from 'recharts';
+import EventScatterChart from './EventScatterChart';
+import EventPieChart from './EventPieChart';
 
 
 class App extends Component {
@@ -99,20 +98,8 @@ class App extends Component {
         />
 
         <h4>Events in each city</h4>
-
-        <ScatterChart
-        width={400}
-        height={400}
-        margin={{
-          top: 20, right: 20, bottom: 20, left: 20,
-        }}
-        >
-        <CartesianGrid />
-        <XAxis type="category" dataKey="city" name="City" />
-        <YAxis type="number" dataKey="number" name="Number of Events"/>
-        <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-        <Scatter data={this.getData()} fill="#8884d8" />
-        </ScatterChart>
+        <EventScatterChart locations={locations} events={events} />
+        <EventPieChart locations={locations} events={events} />
 
         <EventList 
           events={this.state.events}
