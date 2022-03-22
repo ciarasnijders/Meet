@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
 
+const colors = ['#EBDE6F', '#E6CEAS', '#DDB87A', '#BF4722', '#942614']
+
 const EventPieChart = ({events}) => {
   const [data, setData] = useState([]);
 
