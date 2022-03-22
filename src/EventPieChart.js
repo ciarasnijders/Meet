@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer } from "recharts";
-import { COLORS } from '../utils/constants';
 
 const EventPieChart = ({events}) => {
   const [data, setData] = useState([]);
@@ -22,7 +21,7 @@ const EventPieChart = ({events}) => {
   return ( 
     <>
 		<ResponsiveContainer height={400} width={'40%'} className='pie-chart'>
-			<PieChart
+			<PieChart width={730} height={250}
 				margin={{
 					top: 20, right: 20, bottom: 20, left: 20 }}>              
 						<Pie
@@ -35,7 +34,7 @@ const EventPieChart = ({events}) => {
 							dataKey="value"
 							label={({ name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}>
 							{data.map((entry, index) => (
-									<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+									<Cell key={`cell-${index}`} fill={colors[index]} />
 							))}
 						</Pie>
 
