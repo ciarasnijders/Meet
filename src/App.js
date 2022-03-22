@@ -98,8 +98,8 @@ class App extends Component {
         />
 
         <h4>Events in each city</h4>
-        <EventScatterChart locations={locations} events={events} />
-        <EventPieChart locations={locations} events={events} />
+        <EventScatterChart events={this.state.events} locations={this.state.locations}/>
+        <EventPieChart events={this.state.events}/>
 
         <EventList 
           events={this.state.events}
